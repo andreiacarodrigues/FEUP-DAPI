@@ -1,0 +1,273 @@
+\documentclass[twocolumn,twoside,11pt,a4paper]{article}
+%----------------------------------------------------------------------------------------
+%	packages
+%----------------------------------------------------------------------------------------
+
+\usepackage[english]{babel}  % portuguese
+\usepackage{graphicx}           % images: .png or .pdf w/ pdflatex; .eps w/ latex
+\usepackage{lipsum}             % generate dummy text throughout this template
+
+%% For iso-8859-1 (latin1), comment next line and uncomment the second line
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+
+\usepackage[T1]{fontenc}        % T1 fonts
+\usepackage{lmodern}            % fonts
+\usepackage[sc]{mathpazo}       % Use the Palatino font
+\linespread{1.05}               % Line spacing - Palatino needs more space between lines
+\usepackage{microtype}          % Slightly tweak font spacing for aesthetics
+\usepackage{url}                % urls
+\usepackage[hang, small, labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs}           % Horizontal rules in tables
+\usepackage{float}              % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{paralist}           % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage{tabto}
+% geometry package
+\usepackage[outer=20mm,inner=20mm,vmargin=15mm,includehead,includefoot,headheight=15pt]{geometry}
+%% space between columns
+\columnsep 10mm
+
+\usepackage{subcaption}
+\usepackage{abstract}           % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+% \usepackage{titlesec}           % Allows customization of titles
+% \renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+% \renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+% \titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+% \titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{%
+    a4paper = true,              % use A4 paper 
+    bookmarks = true,            % make bookmarks 
+    colorlinks = true,           % false: boxed links; true: colored links
+    pdffitwindow = false,        % page fit to window when opened
+    pdfpagemode = UseNone,       % do not show bookmarks
+    pdfpagelayout = SinglePage,  % displays a single page
+    pdfpagetransition = Replace, % page transition
+    linkcolor=blue,              % hyperlink colors
+    urlcolor=blue,
+    citecolor=blue,
+    anchorcolor=green
+}
+
+\usepackage{indentfirst}         % indent also 1st paragraph
+
+\usepackage{fancyhdr}            % Headers and footers
+\pagestyle{fancy}                % pages have headers and footers
+\fancyhead{}                     % Blank out the default header
+\fancyfoot{}                     % Blank out the default footer
+\fancyhead[LO,RE]{Anime List} % Custom header text
+\fancyhead[RO,LE]{\thepage}      % Custom header text
+\fancyfoot[RO,LE]{Grupo 04, 19 de Outubro de 2018} % Custom footer text
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%\hyphenation{}                  % explicit hyphenation
+
+%----------------------------------------------------------------------------------------
+%	macro definitions
+%----------------------------------------------------------------------------------------
+
+% entities
+\newcommand{\class}[1]{{\normalfont\slshape #1\/}}
+\newcommand{\svg}{\class{SVG}}
+\newcommand{\scada}{\class{SCADA}}
+\newcommand{\scadadms}{\class{SCADA/DMS}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Anime List - Dataset Preparation}} % Article title
+
+\author{Andreia Rodrigues\\
+\small \texttt{up201404691@fe.up.pt}\\
+\and
+Francisco Queirós\\
+\small \texttt{up201404326@fe.up.pt}
+\vspace{-5mm}\\
+\and
+Miriam Gonçalves\\
+\small \texttt{up201403441@fe.up.pt}
+\vspace{-5mm}\\
+}
+
+\date{19 de Outubro de 2018}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+\thispagestyle{plain}            % no headers in the first page
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\textit{Anime} refers to “animation” and it represents all animation produced by Japan. It has a distinct look-and-feel compared to western animations and, over the last forty years, it has become an international phenomenon, attracting millions of fans and being translated into many languages.
+\par
+With over 100 different anime tv shows and movies being released every year, anime fans started to gather information about their favorite shows and creating large databases to share with the rest of the community.
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}\label{intro}
+\textit{Anime} is an abbreviation of the word “animation” and it is used by the Western culture to describe a Japanese-style animated film or tv show. It is characterised by the characters having huge eyes, bright colored hair and exaggerated emotional expressions and gestures.
+\par
+Japan began producing animation in 1917, but \textit{anime} only started to become famous after the 60s due to the creation of television, that had a crucial role on making these japanese characteristic films an increasing trend. 
+\par
+They usually originate from \textit{manga} (comic books), visual novels, light novels or video game adaptations. 
+\par
+These animations encompass a diverse range of storytelling styles, from horror to romance and everything in between, being a popular form of entertainment for adults as well as for younger audiences. \textit{Anime} often covers more serious topics other than the typical cartoon.
+\par
+Nowadays, with the growth of \textit{anime} popularity and the number of animated films being produced every year, \textit{anime} fans gather in online platforms where information about \textit{anime} and its reviews are collected and can be accessed, allowing users to interact with each other, share what animations they are interested in and keep track of what they have watched, are watching and want to watch in the future. 
+\par
+These online platforms gather their own data separately and there isn’t a centralized place where users can have an overview of an anime and the rating it is given in each of them. To counter this we intend to get and process all the necessary data from the most popular \textit{anime} rating platforms, find a suitable way to store it and develop intuitive methods for users to search for \textit{anime} they are/might be interested in.
+
+%------------------------------------------------
+
+\section{Background}\label{background}
+Over the years, with the major increase of \textit{anime}'s popularity, several platforms have been created for sharing information about these animated movies and tv shows. The need for specific websites comes from \textit{anime} having a very distinct style compared to regular animations that doesn’t really fit the reality of popular movie and show rating websites like \textit{IMDb} or \textit{Rotten Tomatoes}.
+\par
+The most popular and complete websites are “\textit{MyAnimeList}”, “\textit{Anime News Network}”, “\textit{AniList}” and “\textit{Kitsu}”. They all complement each other in terms of information available and ratings attributed. Each of these websites allow users to create accounts and keep track of what \textit{anime} they have watched, are watching, want to watch and discuss and review each \textit{anime}. \textit{IMDb} has recently started to include the most popular and better rated \textit{anime} in their lists.
+
+%------------------------------------------------
+
+\section{Information Retrieval}\label{retrieval}
+
+The dataset used as our basis comes from \textit{Kaggle}, a platform for predictive analytics competitions in which companies and researchers publish datasets while statisticians and data miners compete to produce the best models for predicting and describing the data. \textit{Kaggle} holds many datasets that may vary on the subject and the quantity of data.
+\par
+For the dataset we are using, we only retrieved the file containing the general information about \textit{anime}. It has the name “\textit{anime\_cleaned}” and contains 6.03 MB of data in a comma-separated values (\textit{.csv}) file. The information in this dataset was collected from the most popular \textit{anime} website “\textit{MyAnimeList}”, where \textit{anime} fans share information about each \textit{anime}, discuss about it and rate the ones they have watched while also keeping track of what they are watching, have watched and want to watch.
+\par
+The second dataset used comes from \textit{IMDb}, the largest movie, cinema and tv shows database. It is one of the most relevant platforms in the cinema industry with over 4.7 million titles (movies and tv shows), 8.3 million personalities (actors, producers, etc) and 83 million users registered. Users can give a rating score from 1 to 10 to any existing title in the database. The website provides vast and complete information about each title as well as the average rating score. 
+\par
+The data files we are using are called “\textit{title.akas}”, a 171 MB file with the most basic information about the titles,“\textit{title.rating}”, a 14.1 MB file that connects the \textit{ids} of titles provided in the first file with the respective average rating and “\textit{title.basics}”, a 431MB file that connects the titles \textit{ids} to some other additional information like the type/format (movie, short, animation, etc). All these files are tab-separated files (\textit{.tsv}).
+\par
+Lastly we will use the data provided by the \textit{Kitsu API}, an \textit{API} that retrieves data from the \textit{Kitsu} website, one of the most popular anime websites, similar to “\textit{MyAnimeList}”, where the community rates the shows they have watched. This \textit{API} is well documented and the data is returned in \textit{JSON} format and can be filtered beforehand on the \textit{API} call.
+
+ %--------------------------------------------
+
+\section{Data Preparation}\label{preparation}
+The first step on the data preparation task was to clean and organize the basis dataset, as it had some repeated information and some that we didn’t require, to get a better understanding of the data structure.
+\par
+ To do that, we used \textit{OpenRefine}, a tool for working with unstructured large data sets, allowing to clean up data, transform it to other formats and extend it with web services and external data. It allows the user to filter by each column, changing which rows should be displayed, remove columns, amongst other useful things.
+\par
+We used this tool to remove the columns with the redundant data and the ones that were irrelevant for the purpose of this project. We also transformed the \textit{.csv} file into a table like representation, so that we could see more clearly what data was correlated and what data was missing. From here we identified the complementary information that we could use for this dataset and the other datasets/\textit{API}s we could use to get it.
+\par
+To enrich our data we started by importing the data provenient from the “\textit{MyAnimeList}” \textit{Kaggle} dataset and the \textit{IMDb} title dataset onto a \textit{SQL Server} database and filtering the data that matched on the “title” attribute, since there was nothing else that related both information. If more that one result for a particular \textit{anime}'s title show up, we'll filter those titles for those that have animation as a genre. \textit{Anime} doesn't exist as a genre in \textit{IMDb}, but \textit{anime} implies being an animation.
+\par
+To relate the rating data from \textit{IMDb} to the respective \textit{anime}, the ids of each dataset referencing that title are used.
+\par
+There was still some information that we found useful missing (the synopsis and trailer link for example) so we decided to gather the information from another popular \textit{anime} community website called \textit{Kitsu}. The relation between the \textit{anime} data we already had and the \textit{Kitsu} data would also be done by the title, since there was no other way to connect both.
+
+%------------------------------------------------
+
+\section{Data Limitations}\label{limitations}
+There were some limitations relative to the crossing of the data between the different datasets since the only way to relate data was using the \textit{anime} title and that can cause some restrictions if the field isn’t coherent.
+\par
+Regarding the data being updated, the only issues that can be faced are regarding the \textit{MyAnimeList} data. Since the website’s \textit{API} was taken down, the dataset is only updated by the user that submitted this data to \textit{Kaggle} and we don’t know how frequent that will be done. Therefore, it can have some information that isn’t fully coherent with what the website is showing at the moment.
+\par
+ The \textit{IMDb} dataset is updated by their official website so we will assume that no problems will show up and that the updates happen regularly. 
+\par
+The \textit{Kitsu} data will always be updated because it will be coming directly from their \textit{API}.
+
+ %------------------------------------------
+\section{Data Model} \label{model}
+ \begin{figure}[H]
+\includegraphics[width=90mm, height=92mm]{uml.png}\centering
+\caption*{\textbf{Fig. 1} - Anime List Data Model.}
+\label{img1}
+\end{figure}
+
+\begin{itemize}
+\item \textbf{Title/ Title in English/ Title in Japanese/ Title Synonyms} - These are names given to the \textit{anime}. The names are self-explanatory.
+\item \textbf{Synopsis} - This contains a synopsis of the \textit{anime}.
+\item \textbf{Episode Amount} - Amount of episodes in the \textit{anime}.
+\item \textbf{Duration in Minutes} - How long a typical episode of the \textit{anime} is, in minutes.
+\item \textbf{Aired From/To} - Dates when the \textit{anime} started to be aired and, if it has already ended, when it stopped being aired.
+\item \textbf{Broadcast}  - Day of the week and time of day the \textit{anime} is aired.
+\item \textbf{Opening/Ending Themes} - These represent the name of songs that are played at the start and end of episodes of the \textit{anime}.
+\item \textbf{MAL Score/ Scored By Amount/ Rank/ Popularity/ Members/ Favorites} - These values represent different aspects of how users from \textit{MyAnimeList} share their fondness for this \textit{anime}. The “score” is the average score that the amount of users on the “scored by amount” field rated the \textit{anime}. The “rank” is based on the top rated \textit{anime} page. The “popularity” is based on how many people have added the \textit{anime} to their lists (the “members” field). The “favorites” field is related to how many people have included this \textit{anime} in their favorites.
+\item \textbf{Kitsu Rating Rank/ Popularity Rank/ User Count/ Favorites Count} -  These values represent different aspects of how users that were sourced by \textit{Kitsu API} share their fondness for this \textit{anime}. The "rating rank" represents the place of the \textit{anime} in top ranking (how well it's scored). The "popularity rank" represents the ranking of the popularity of the \textit{anime} (how many users know/watch/like the \textit{anime}). The "user count" represents how many users interact with the \textit{anime}. The "favorites count" represents how many users put the \textit{anime} as a favorite.
+\item \textbf{IMDb Rating} - This represents the score that \textit{IMDb} has for this \textit{anime}.
+\item \textbf{Status} - Represent the status of the \textit{anime}, for example, if it's still being aired, has finished or has been cancelled, among others.
+\item \textbf{Rating} - Content rating that measures its suitability for different audiences. One example is PG-13.
+\item \textbf{Type} - The format of the \textit{anime}. Either for TV broadcasting, a movie, among other formats.
+\item \textbf{Source} - Type of content from which the \textit{anime} was based.
+\item \textbf{Licensor} - Group that acquires permission to transmit the \textit{anime} in other regions.
+\item \textbf{Producer} - Group that oversees the product during development and gives guidance.
+\item \textbf{Studio} - Group that participates in directly making the \textit{anime} itself.
+\item \textbf{Genre} - Genre of the \textit{anime}, for example, Comedy.
+\item \textbf{Relation} - Some \textit{anime} relate to another \textit{anime} in some way. For example, sequel, prequel, or telling a side-story, among other relations.
+\end{itemize}
+
+ %------------------------------------------
+\section{Domain Model} \label{domain}
+The domain model shouldn't be at all different from the data model. We don't have other entities not mentioned in the data that would be relevant to understand or draw more complete conclusion from the data.
+
+ %------------------------------------------
+\section{Data Visualization}  \label{visualization}
+With this data we can make queries that go from simple:
+\begin{itemize}
+\item "What is the \textit{anime} with the id 123?"
+\item"What are the \textit{anime} with an attribute with a particular value? (e.g. Rating as PG-13)"
+\item "What are the studios/producers/etc. for this \textit{anime}?"
+\end{itemize}
+
+To more complex queries:
+\begin{itemize}
+\item "How many comedy \textit{anime} has a certain studio made?"
+\item "What is the most popular \textit{anime} of a certain producer?"
+\item "What is the average score of the \textit{anime} of a particular licensor?"
+\end{itemize}
+These queries can then later be used with full-text search. This will allow to query for keywords in big text fields like the synopsis. Another interesting idea would be to allow simple text as the query but match several fields. For example, if the user queries "PG-13", \textit{anime} with "PG-13" rating could be returned to the user.
+
+%------------------------------------------------
+
+\section{Conclusion}\label{conclusion}
+For this milestone it was required to look for appropriate datasets and determine what tools would be necessary to process and refine the data collected.
+\par
+After analysing the existing datasets about \textit{animes} it was important to understand how to cross data together in order to enrich the initial dataset chosen. This step was the hardest, since the cross between data was made by titles, that can be incoherent between datasets, and not by a predefined \textit{id}.  The final result is a large dataset with complete and coherent data about \textit{animes}, which will be queried to get certain subsets info and related informations between others.
+
+
+
+ %------------------------------------------
+  \begin{thebibliography}{1}
+
+  \bibitem{Note} \textit{Kaggle: Your Home for Data Science}, \url{ https://www.kaggle.com/}, 2018. [Online, accessed 25-September-2018]
+ 
+  \bibitem{Note} \textit{Kaggle} \url{ https://en.wikipedia.org/wiki/Kaggle}, 2018. [Online, accessed 26-September-2018]
+
+  \bibitem{Note} \textit{My Anime List | Kaggle}, \url{https://www.kaggle.com/azathoth42/myanimelist}, 2018. [Online, accessed 26-September-2018]  
+
+  \bibitem{Note} \textit{My Anime List}, \url{https://myanimelist.net/}, 2018. [Online, accessed 26-September-2018]
+
+  \bibitem{Note} \textit{IMDb Datasets}, \url{ https://www.imdb.com/interfaces/}, 2018. [Online, accessed 28-September-2018]
+
+  \bibitem{Note} \textit{Openrefine : A free, open source, power tool for working with messy data}, \url{http://openrefine.org/}, 2018. [Online, accessed 10-October-2018]
+
+  \bibitem{Note} \textit{Kitsu API}, \url{https://kitsu.docs.apiary.io/}, 2018. [Online, accessed 12-October-2018]
+
+  \bibitem{Note} \textit{Wikipedia} page \textit{Anime}, \url{ https://en.wikipedia.org/wiki/Anime}, 2018. [Online, accessed 13-October-2018]
+
+  \bibitem{Note} \textit{Wikipedia} page \textit{History of Anime}, \url{ https://en.wikipedia.org/wiki/History_of_anime}, 2018. [Online, accessed 13-October-2018]
+
+  \bibitem{Note} \textit{What is Anime? A Brief History of Anime Genres, Culture and Evolution - The Daily Dot}, \url{https://www.dailydot.com/parsec/what-is-anime/},   2018. [Online, accessed 14-October-2018].
+
+  \bibitem{Note} \textit{A Brief History of Anime - Thought Co}, \url{ https://www.thoughtco.com/brief-history-of-anime-14497},   2018. [Online, accessed 14-October-2018]
+
+  \end{thebibliography}
+
+\end{document}
+
+
+
+
+
